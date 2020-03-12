@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -39,6 +40,9 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+player = Player('adventurer', room['outside'])
+
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +53,58 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+playing = True
+
+exits = []
+
+def handleRoom():
+    global room
+    print("\n")
+    player.room.describe()
+    global exits
+    exits = []
+    if hasattr(player.room, 'n_to'):
+        exits.append([f"To the North lies a {player.room.n_to.name}.", "[n]orth", "n", player.room.n_to])
+    if hasattr(player.room, 'e_to'):
+        exits.append([f"To the East lies a {player.room.e_to.name}.", "[e]ast", "e", player.room.e_to])
+    if hasattr(player.room, 's_to'):
+        exits.append([f"To the South lies a {player.room.s_to.name}.", "[s]outh", "s",player.room.s_to])
+    if hasattr(player.room, 'w_to'):
+        exits.append([f"To the West lies a {player.room.w_to.name}.", "[w]est", "w", player.room.w_to])
+    for cardinals in exits:
+        print(cardinals[0])
+    print("Press the bracketed key to move. Your options are: \n")
+    for cardinals in exits:
+        print(cardinals[1])
+    print("[q]uit")
+
+def handleMove():
+    global playing
+    global player
+    global exits
+    playerMove = input("Which way, adventurer?\n")
+    formatMove = str(playerMove[0]).lower()
+    for cardinals in exits:
+        if formatMove == cardinals[2]:
+            player.room = cardinals[3]
+        elif formatMove == "q":
+            playing = False
+            quit()
+        else:
+            print("Not a good input")
+
+
+    print("\n")
+
+
+
+
+def adventureTime():
+
+    while playing == True:
+        handleRoom()
+        handleMove()
+
+adventureTime()
