@@ -6,4 +6,7 @@ class Room:
     self.name = name
     self.description = description
   def describe(self):
-    print(f'{self.name}: {self.description}')
+    print(self.description, "\n")
+  def __repr__(self):
+    return (f'{self.__class__.__name__}('
+               f'{self.name!r}, {self.description!r})')
