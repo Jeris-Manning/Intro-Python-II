@@ -42,14 +42,6 @@ room['treasure'].s_to = room['narrow']
 
 player = Player('adventurer', room['outside'])
 
-# def holdUs():
-#     room[player.room].describe()
-#     print(player.room)
-#     print(room[player.room].n_to)
-#     player.room = room[player.room].n_to.name.lower()
-#     print(player.room)
-#     action = input("What would you like to do? Action: ")
-#     print(action[0])
 
 # Write a loop that:
 #
@@ -62,9 +54,6 @@ player = Player('adventurer', room['outside'])
 #
 # If the user enters "q", quit the game.
 
-
-# print(f'Welcome, brave {player.name}! May the good blood guide your way...')
-# print("\n")
 
 playing = True
 
@@ -118,16 +107,4 @@ def adventureTime():
         handleRoom()
         handleMove()
 
-
-
-# playerMove = input("What would you like to do?\n ")
-    # print(playerMove)
-
-
 adventureTime()
-# print(room[player.room].name)
-
-
-# for cardinals in room[player.room].roomExits():
-#         print(room[player.room].n_to.name)
-#         print(getattr(room[player.room], "name"))
